@@ -60,7 +60,7 @@ export default function RegistrationScreen() {
                                     }
                                 />
                             </View>
-                            <View>
+                            <View style={{ marginTop: 16 }}>
                                 <TextInput
                                     style={styles.input}
                                     placeholder="email"
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopStartRadius: 25,
         borderTopEndRadius: 25,
-        paddingHorizontal: 30,
+        paddingHorizontal: 16,
         height: 550,
     },
     input: {
@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     },
     btn: {
         backgroundColor: "#FF6C00",
-        width: 343,
         borderRadius: 100,
         height: 51,
         marginTop: 43,
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
     },
     header: {
         alignItems: "center",
-        marginTop: 32,
+        marginTop: 92,
         marginBottom: 33,
     },
     headerTitle: {
