@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 const initialState = {
+    login: "",
     email: "",
     password: "",
 };
@@ -56,7 +57,7 @@ export default function RegistrationScreen() {
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.email}
                                     onChangeText={(value) =>
-                                        setstate((prevState) => ({ ...prevState, email: value }))
+                                        setstate((prevState) => ({ ...prevState, login: value }))
                                     }
                                 />
                             </View>
