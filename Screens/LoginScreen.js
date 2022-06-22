@@ -42,14 +42,13 @@ export default function LoginScreen() {
                         <View
                             style={{
                                 ...styles.form,
-                                marginBottom: isShowKeyboard ? 20 : 150,
+                                marginBottom: isShowKeyboard ? 50 : 0,
                             }}
                         >
                             <View style={styles.header}>
                                 <Text style={styles.headerTitle}>Log In</Text>
                             </View>
                             <View>
-                                <Text style={styles.inputTitle}>Email</Text>
                                 <TextInput
                                     style={styles.input}
                                     textAlign={"center"}
@@ -60,8 +59,7 @@ export default function LoginScreen() {
                                     }
                                 />
                             </View>
-                            <View style={{ marginTop: 20 }}>
-                                <Text style={styles.inputTitle}>Password</Text>
+                            <View style={{ marginTop: 16 }}>
                                 <TextInput
                                     style={styles.input}
                                     textAlign={"center"}
@@ -80,6 +78,7 @@ export default function LoginScreen() {
                             >
                                 <Text style={styles.btnTitle}>SIGN IN</Text>
                             </TouchableOpacity>
+                            <Text style={styles.registrationLink}>Нет аккаунта? Зарегистрироваться</Text>
                         </View>
                     </KeyboardAvoidingView>
                 </ImageBackground>
@@ -91,35 +90,34 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
     },
     image: {
         flex: 1,
         resizeMode: "cover",
         justifyContent: "flex-end",
-        // justifyContent: "center",
-        // alignItems: "center",
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: "#f0f8ff",
-        height: 40,
-        borderRadius: 6,
-
-        color: "#f0f8ff",
     },
     form: {
-        marginHorizontal: 40,
+        backgroundColor: '#fff',
+        borderTopStartRadius: 25,
+        borderTopEndRadius: 25,
+        paddingHorizontal: 30,
+        height: 490,
     },
-    inputTitle: {
-        color: "#f0f8ff",
-        marginBottom: 10,
-        fontSize: 18,
+    input: {
+        backgroundColor: '#F6F6F6',
+        borderWidth: 1,
+        borderColor: "#E8E8E8",
+        height: 50,
+        borderRadius: 8,
+        fontFamily: 'Roboto',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: 16,
     },
     btn: {
         backgroundColor: "#FF6C00",
+        width: 343,
         borderRadius: 100,
-        borderWidth: 1,
         height: 51,
         marginTop: 43,
         justifyContent: "center",
@@ -132,16 +130,26 @@ const styles = StyleSheet.create({
     },
     header: {
         alignItems: "center",
+        marginTop: 32,
         marginBottom: 33,
     },
     headerTitle: {
         fontFamily: 'Roboto',
         fontStyle: 'normal',
-        fontWeight: 500,
+        fontWeight: 'bold',
         fontSize: 30,
-        lineHeight: 1.17,
-        textAlign: center,
+        // lineHeight: 1.17,
+        textAlign: 'center',
         letterSpacing: 0.01,
         color: '#212121',
     },
+    registrationLink: {
+        marginTop: 16,
+        fontFamily: 'Roboto',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: 16,
+        color: '#1B4371',
+        textAlign: 'center',
+    }
 });
