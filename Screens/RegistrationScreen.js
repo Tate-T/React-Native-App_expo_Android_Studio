@@ -43,7 +43,7 @@ export default function RegistrationScreen() {
                         <View
                             style={{
                                 ...styles.form,
-                                marginBottom: isShowKeyboard ? 50 : 0,
+                                marginBottom: isShowKeyboard ? 60 : 0,
                             }}
                         >
                             <View style={styles.header}>
@@ -51,7 +51,7 @@ export default function RegistrationScreen() {
                             </View>
                             <View>
                                 <TextInput
-                                    placeholder="login"
+                                    placeholder="Login"
                                     style={styles.input}
                                     textAlign={"center"}
                                     onFocus={() => setIsShowKeyboard(true)}
@@ -64,7 +64,7 @@ export default function RegistrationScreen() {
                             <View style={{ marginTop: 16 }}>
                                 <TextInput
                                     style={styles.input}
-                                    placeholder="email"
+                                    placeholder="Email"
                                     textAlign={"center"}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.email}
@@ -76,7 +76,7 @@ export default function RegistrationScreen() {
                             <View style={{ marginTop: 16 }}>
                                 <TextInput
                                     style={styles.input}
-                                    placeholder="password"
+                                    placeholder="Password"
                                     textAlign={"center"}
                                     secureTextEntry={true}
                                     onFocus={() => setIsShowKeyboard(true)}
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: 16,
+        textAlign: 'start',
     },
     btn: {
         backgroundColor: "#FF6C00",

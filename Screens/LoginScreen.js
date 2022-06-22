@@ -51,6 +51,7 @@ export default function LoginScreen() {
                             <View>
                                 <TextInput
                                     style={styles.input}
+                                    placeholder="Email"
                                     textAlign={"center"}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.email}
@@ -62,6 +63,7 @@ export default function LoginScreen() {
                             <View style={{ marginTop: 16 }}>
                                 <TextInput
                                     style={styles.input}
+                                    placeholder="Password"
                                     textAlign={"center"}
                                     secureTextEntry={true}
                                     onFocus={() => setIsShowKeyboard(true)}
@@ -90,6 +92,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: '100%',
     },
     image: {
         flex: 1,
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopStartRadius: 25,
         borderTopEndRadius: 25,
-        paddingHorizontal: 30,
+        paddingHorizontal: 16,
         height: 490,
     },
     input: {
@@ -113,6 +116,7 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: 16,
+        textAlign: 'start',
     },
     btn: {
         backgroundColor: "#FF6C00",
