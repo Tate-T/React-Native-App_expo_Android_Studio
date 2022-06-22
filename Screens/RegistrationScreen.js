@@ -4,6 +4,8 @@ import {
     Text,
     View,
     ImageBackground,
+    Image,
+    Button,
     TextInput,
     TouchableOpacity,
     Platform,
@@ -46,6 +48,19 @@ export default function RegistrationScreen() {
                                 marginBottom: isShowKeyboard ? 60 : 0,
                             }}
                         >
+                            <Image
+                                style={styles.avatar}
+                            // source={require("../assets/avatar.png")}
+                            />
+                            {/* <Button
+                                title="+"
+                                style={styles.avatarBtn}
+                            /> */}
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                            >
+                                <Text style={styles.avatarBtn}>+</Text>
+                            </TouchableOpacity>
                             <View style={styles.header}>
                                 <Text style={styles.headerTitle}>Registration</Text>
                             </View>
@@ -112,6 +127,29 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         justifyContent: "flex-end",
     },
+    avatar: {
+        position: 'absolute',
+        top: -60,
+        left: 150,
+        borderRadius: 16,
+        width: 120,
+        height: 120,
+        backgroundColor: '#F6F6F6',
+    },
+    avatarBtn: {
+        position: 'absolute',
+        top: 15,
+        left: 240,
+        borderWidth: 1,
+        borderRadius: 100,
+        borderColor: '#FF6C00',
+        width: 25,
+        height: 25,
+        backgroundColor: '#fff',
+        color: '#FF6C00',
+        textAlign: 'center',
+        fontSize: 17
+    },
     form: {
         backgroundColor: '#fff',
         borderTopStartRadius: 25,
@@ -129,7 +167,7 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: 16,
-        textAlign: 'start',
+        // textAlign: 'start',
     },
     btn: {
         backgroundColor: "#FF6C00",

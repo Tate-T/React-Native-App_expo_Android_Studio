@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: 16,
-        textAlign: 'start',
+        // textAlign: 'start',
     },
     btn: {
         backgroundColor: "#FF6C00",
