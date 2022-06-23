@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import * as Font from 'expo-font';
+import { AppLoading } from "expo";
 import {
     StyleSheet,
     Text,
@@ -16,11 +18,18 @@ const initialState = {
     email: "",
     password: "",
 };
+const loadFonts = async () => {
+    await Font.loadAsync({
+        "RobotoRegular": require("../assets/fonts/Roboto-Regular.ttf"),
+        "RobotoMedium": require("../assets/fonts/Roboto-Medium.ttf"),
+    });
+};
 
 export default function LoginScreen() {
     console.log(Platform.OS);
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [state, setstate] = useState(initialState);
+    const [isReady, setIsReady] = useState(false);
 
     const keyboardHide = () => {
         setIsShowKeyboard(false);
@@ -28,6 +37,11 @@ export default function LoginScreen() {
         console.log(state);
         setstate(initialState);
     };
+
+    if (!isReady) {
+        setIsReady(true);
+        return loadFonts()
+    }
 
     return (
         <TouchableWithoutFeedback onPress={keyboardHide}>
@@ -112,9 +126,7 @@ const styles = StyleSheet.create({
         borderColor: "#E8E8E8",
         height: 50,
         borderRadius: 8,
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: '400',
+        fontFamily: 'RobotoRegular',
         fontSize: 16,
         // textAlign: 'start',
     },
@@ -138,9 +150,7 @@ const styles = StyleSheet.create({
         marginBottom: 33,
     },
     headerTitle: {
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: 'bold',
+        fontFamily: 'RobotoMedium',
         fontSize: 30,
         // lineHeight: 1.17,
         textAlign: 'center',
@@ -149,9 +159,7 @@ const styles = StyleSheet.create({
     },
     registrationLink: {
         marginTop: 16,
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: '400',
+        fontFamily: 'RobotoRegular',
         fontSize: 16,
         color: '#1B4371',
         textAlign: 'center',
