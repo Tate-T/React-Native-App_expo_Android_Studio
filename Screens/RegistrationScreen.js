@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Font from 'expo-font';
 import { AppLoading } from "expo";
 import {
@@ -14,6 +14,7 @@ import {
     KeyboardAvoidingView,
     Keyboard,
     TouchableWithoutFeedback,
+    Dimensions
 } from "react-native";
 
 const initialState = {
@@ -35,7 +36,19 @@ export default function RegistrationScreen() {
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [state, setstate] = useState(initialState);
     const [isReady, setIsReady] = useState(false);
+    const [dimensions, setdimensions] = useState(
+        Dimensions.get("window").width - 16 * 2);
 
+    useEffect(() => {
+        const onChange = () => {
+            const width = Dimensions.get("window").width - 16 * 2;
+            setdimensions(width);
+        };
+        Dimensions.addEventListener("change", onChange);
+        return () => {
+            Dimensions.removeEventListener("change", onChange);
+        };
+    }, []);
 
     const keyboardHide = () => {
         setIsShowKeyboard(false);
@@ -198,7 +211,7 @@ const styles = StyleSheet.create({
         marginTop: 43,
         justifyContent: "center",
         alignItems: "center",
-        marginHorizontal: 16,
+        // marginHorizontal: 16,
     },
     btnTitle: {
         color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
