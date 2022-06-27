@@ -31,13 +31,13 @@ export default function MainScreen({ navigation }) {
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Image source={require('../assets/logOutBtn.png')} style={styles.logOutBtn} />
+                    <Image source={require('../../assets/logOutBtn.png')} style={styles.logOutBtn} />
                 </TouchableOpacity>
             </View>
             <View style={styles.mainProfile}>
                 <Image
                     style={styles.avatarProfile}
-                    source={require("../assets/avatar.png")}
+                    source={require("../../assets/avatar.png")}
                 />
                 <View style={styles.textProfile}>
                     <Text style={styles.textProfileName}>Natali Romanova</Text>
@@ -48,20 +48,21 @@ export default function MainScreen({ navigation }) {
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Main')}
                 >
-                    <Image source={require('../assets/mainBtn.png')} style={styles.userBtn} />
+                    <Image source={require('../../assets/mainBtn.png')} style={styles.userBtn} />
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('')}
                 >
                     <View style={styles.addBtnContainer} >
-                        <Image source={require('../assets/addBtn.png')} style={styles.addBtn} /></View>
+                        <Image source={require('../../assets/addBtn.png')} style={styles.addBtn} /></View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('')}
                 >
-                    <Image source={require('../assets/userBtn.png')} style={styles.userBtn} />
+                    <Image source={require('../../assets/userBtn.png')} style={styles.userBtn} />
                 </TouchableOpacity>
             </View>
+
             <View style={styles.navigationBorder}></View>
         </View>
     );

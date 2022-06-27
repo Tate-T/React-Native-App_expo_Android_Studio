@@ -2,9 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import RegistrationScreen from './Screens/auth/RegistrationScreen';
 import LoginScreen from './Screens/auth/LoginScreen';
-import MainScreen from './Screens/MainScreen';
+import MainScreen from './Screens/main/MainScreen';
+import PostScreen from './Screens/main/PostScreen';
+import CreateScreen from './Screens/main/CreateScreen';
+import ProfileScreen from './Screens/main/ProfileScreen';
 import * as Font from 'expo-font';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
 // const loadFonts = async () => {
@@ -16,6 +20,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 
 const AuthStack = createNativeStackNavigator();
+const MainTab = createBottomTabNavigator();
 
 export default function App() {
 
@@ -35,7 +40,15 @@ export default function App() {
 
   return (
     <NavigationContainer style={styles.container}>
-      <AuthStack.Navigator>
+      <MainTab.Navigator style={styles.mainNavigation}>
+        <MainTab.Screen
+          options={{ headerShown: false }} name="Main" component={MainScreen} />
+        <MainTab.Screen
+          options={{ headerShown: false }} name="Create" component={CreateScreen} />
+        <MainTab.Screen
+          options={{ headerShown: false }} name="Profile" component={ProfileScreen} />
+      </MainTab.Navigator>
+      {/* <AuthStack.Navigator>
         <AuthStack.Screen
           options={{ headerShown: false }}
           name='Main'
@@ -48,7 +61,7 @@ export default function App() {
           options={{ headerShown: false }}
           name='Registration'
           component={RegistrationScreen} />
-      </AuthStack.Navigator>
+      </AuthStack.Navigator> */}
       <StatusBar style="auto" />
     </NavigationContainer>
 
