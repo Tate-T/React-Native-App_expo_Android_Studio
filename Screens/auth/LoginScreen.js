@@ -95,7 +95,7 @@ export default function LoginScreen({ navigation }) {
                                 style={styles.btn}
                                 onPress={keyboardHide}
                             >
-                                <Text style={styles.btnTitle}>SIGN IN</Text>
+                                <Text style={styles.btnTitle}>Sign in</Text>
                             </TouchableOpacity>
                             <View style={styles.navigationLink}>
                                 <Text style={styles.navigationBtn}>Нет аккаунта? </Text>

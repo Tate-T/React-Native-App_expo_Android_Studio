@@ -122,7 +122,7 @@ export default function RegistrationScreen({ navigation }) {
                                 style={styles.btn}
                                 onPress={keyboardHide}
                             >
-                                <Text style={styles.btnTitle}>SIGN IN</Text>
+                                <Text style={styles.btnTitle}>Sign up</Text>
                             </TouchableOpacity>
                             <View style={styles.navigationLink}>
                                 <Text style={styles.navigationBtn}>Уже есть аккаунт? </Text>
