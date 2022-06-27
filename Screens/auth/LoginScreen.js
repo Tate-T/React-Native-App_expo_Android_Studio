@@ -12,7 +12,6 @@ import {
     Keyboard,
     TouchableWithoutFeedback,
     Dimensions,
-    Button
 } from "react-native";
 
 const initialState = {
@@ -100,7 +99,6 @@ export default function LoginScreen({ navigation }) {
                             <View style={styles.navigationLink}>
                                 <Text style={styles.navigationBtn}>Нет аккаунта? </Text>
                                 <TouchableOpacity
-                                    title=""
                                     onPress={() => navigation.navigate('Registration')}
                                 >
                                     <Text style={styles.navigationBtn}>Зарегистрироваться</Text>
