@@ -68,7 +68,7 @@ export default function LoginScreen() {
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Email"
-                                    textAlign={"start"}
+                                    textAlign={"left"}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.email}
                                     onChangeText={(value) =>
@@ -80,7 +80,7 @@ export default function LoginScreen() {
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Password"
-                                    textAlign={"start"}
+                                    textAlign={"left"}
                                     secureTextEntry={true}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.password}
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#E8E8E8",
         height: 50,
+        paddingLeft: 16,
         borderRadius: 8,
         fontFamily: 'RobotoRegular',
         fontSize: 16,
