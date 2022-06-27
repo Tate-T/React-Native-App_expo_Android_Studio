@@ -22,8 +22,35 @@ import { NavigationContainer } from '@react-navigation/native';
 const AuthStack = createNativeStackNavigator();
 const MainTab = createBottomTabNavigator();
 
-export default function App() {
+const useRoute = (isAuth) => {
+  if (!isAuth) {
+    <AuthStack.Navigator>
+      <AuthStack.Screen
+        options={{ headerShown: false }}
+        name='Main'
+        component={MainScreen} />
+      <AuthStack.Screen
+        options={{ headerShown: false }}
+        name='Login'
+        component={LoginScreen} />
+      <AuthStack.Screen
+        options={{ headerShown: false }}
+        name='Registration'
+        component={RegistrationScreen} />
+    </AuthStack.Navigator>
+  }
+  return <MainTab.Navigator style={styles.mainNavigation}>
+    <MainTab.Screen
+      options={{ headerShown: false }} name="Main" component={MainScreen} />
+    <MainTab.Screen
+      options={{ headerShown: false }} name="Create" component={CreateScreen} />
+    <MainTab.Screen
+      options={{ headerShown: false }} name="Profile" component={ProfileScreen} />
+  </MainTab.Navigator>
+}
 
+export default function App() {
+  const routing = useRoute(null);
   // const [isReady, setIsReady] = useState(false);
 
   // if (!isReady) {
@@ -40,28 +67,7 @@ export default function App() {
 
   return (
     <NavigationContainer style={styles.container}>
-      <MainTab.Navigator style={styles.mainNavigation}>
-        <MainTab.Screen
-          options={{ headerShown: false }} name="Main" component={MainScreen} />
-        <MainTab.Screen
-          options={{ headerShown: false }} name="Create" component={CreateScreen} />
-        <MainTab.Screen
-          options={{ headerShown: false }} name="Profile" component={ProfileScreen} />
-      </MainTab.Navigator>
-      {/* <AuthStack.Navigator>
-        <AuthStack.Screen
-          options={{ headerShown: false }}
-          name='Main'
-          component={MainScreen} />
-        <AuthStack.Screen
-          options={{ headerShown: false }}
-          name='Login'
-          component={LoginScreen} />
-        <AuthStack.Screen
-          options={{ headerShown: false }}
-          name='Registration'
-          component={RegistrationScreen} />
-      </AuthStack.Navigator> */}
+      {routing}
       <StatusBar style="auto" />
     </NavigationContainer>
 
