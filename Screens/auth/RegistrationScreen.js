@@ -53,7 +53,7 @@ export default function RegistrationScreen() {
             <View style={styles.container}>
                 <ImageBackground
                     style={styles.image}
-                    source={require("../assets/PhotoBG.png")}
+                    source={require("../../assets/PhotoBG.png")}
                 >
                     <KeyboardAvoidingView
                         behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -86,7 +86,7 @@ export default function RegistrationScreen() {
                                     style={styles.input}
                                     textAlign={"center"}
                                     onFocus={() => setIsShowKeyboard(true)}
-                                    value={state.email}
+                                    value={state.login}
                                     onChangeText={(value) =>
                                         setstate((prevState) => ({ ...prevState, login: value }))
                                     }
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     avatar: {
         position: 'absolute',
         top: -60,
-        left: 150,
+        left: 120,
         borderRadius: 16,
         width: 120,
         height: 120,
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     avatarBtn: {
         position: 'absolute',
         top: 15,
-        left: 240,
+        left: 210,
         borderWidth: 1,
         borderRadius: 100,
         borderColor: '#FF6C00',
@@ -181,7 +181,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         fontFamily: 'RobotoRegular',
         fontSize: 16,
-        // textAlign: 'start',
     },
     btn: {
         backgroundColor: "#FF6C00",
@@ -190,7 +189,6 @@ const styles = StyleSheet.create({
         marginTop: 43,
         justifyContent: "center",
         alignItems: "center",
-        // marginHorizontal: 16,
     },
     btnTitle: {
         color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
@@ -204,7 +202,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontFamily: 'RobotoMedium',
         fontSize: 30,
-        // lineHeight: 1.17,
+        lineHeight: 35.16,
         textAlign: 'center',
         letterSpacing: 0.01,
         color: '#212121',

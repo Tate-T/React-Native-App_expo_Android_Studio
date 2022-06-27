@@ -50,7 +50,7 @@ export default function LoginScreen() {
             <View style={styles.container}>
                 <ImageBackground
                     style={styles.image}
-                    source={require("../assets/PhotoBG.png")}
+                    source={require("../../assets/PhotoBG.png")}
                 >
                     <KeyboardAvoidingView
                         behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -130,17 +130,14 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         fontFamily: 'RobotoRegular',
         fontSize: 16,
-        // textAlign: 'start',
     },
     btn: {
         backgroundColor: "#FF6C00",
-        width: 343,
         borderRadius: 100,
         height: 51,
         marginTop: 43,
         justifyContent: "center",
         alignItems: "center",
-        // marginHorizontal: 16,
     },
     btnTitle: {
         color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
@@ -154,7 +151,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontFamily: 'RobotoMedium',
         fontSize: 30,
-        // lineHeight: 1.17,
+        lineHeight: 35.16,
         textAlign: 'center',
         letterSpacing: 0.01,
         color: '#212121',
