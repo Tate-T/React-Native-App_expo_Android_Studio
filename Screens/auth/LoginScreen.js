@@ -68,7 +68,7 @@ export default function LoginScreen() {
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Email"
-                                    textAlign={"center"}
+                                    textAlign={"start"}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.email}
                                     onChangeText={(value) =>
@@ -80,7 +80,7 @@ export default function LoginScreen() {
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Password"
-                                    textAlign={"center"}
+                                    textAlign={"start"}
                                     secureTextEntry={true}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.password}

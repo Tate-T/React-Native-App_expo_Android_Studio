@@ -84,7 +84,7 @@ export default function RegistrationScreen() {
                                 <TextInput
                                     placeholder="Login"
                                     style={styles.input}
-                                    textAlign={"center"}
+                                    textAlign={"start"}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.login}
                                     onChangeText={(value) =>
@@ -96,7 +96,7 @@ export default function RegistrationScreen() {
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Email"
-                                    textAlign={"center"}
+                                    textAlign={"start"}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.email}
                                     onChangeText={(value) =>
@@ -108,7 +108,7 @@ export default function RegistrationScreen() {
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Password"
-                                    textAlign={"center"}
+                                    textAlign={"start"}
                                     secureTextEntry={true}
                                     onFocus={() => setIsShowKeyboard(true)}
                                     value={state.password}
