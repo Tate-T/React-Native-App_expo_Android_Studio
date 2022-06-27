@@ -11,7 +11,8 @@ import {
     KeyboardAvoidingView,
     Keyboard,
     TouchableWithoutFeedback,
-    Dimensions
+    Dimensions,
+    Button
 } from "react-native";
 
 const initialState = {
@@ -19,7 +20,7 @@ const initialState = {
     password: "",
 };
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
     console.log(Platform.OS);
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [state, setstate] = useState(initialState);
@@ -96,7 +97,15 @@ export default function LoginScreen() {
                             >
                                 <Text style={styles.btnTitle}>SIGN IN</Text>
                             </TouchableOpacity>
-                            <Text style={styles.registrationLink}>Нет аккаунта? Зарегистрироваться</Text>
+                            <View style={styles.navigationLink}>
+                                <Text style={styles.navigationBtn}>Нет аккаунта? </Text>
+                                <TouchableOpacity
+                                    title=""
+                                    onPress={() => navigation.navigate('Registration')}
+                                >
+                                    <Text style={styles.navigationBtn}>Зарегистрироваться</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </KeyboardAvoidingView>
                 </ImageBackground>
@@ -157,11 +166,14 @@ const styles = StyleSheet.create({
         letterSpacing: 0.01,
         color: '#212121',
     },
-    registrationLink: {
+    navigationLink: {
         marginTop: 16,
+        flexDirection: "row",
+        justifyContent: "center",
+    },
+    navigationBtn: {
         fontFamily: 'RobotoRegular',
         fontSize: 16,
-        color: '#1B4371',
-        textAlign: 'center',
+        color: '#1B4371'
     }
 });

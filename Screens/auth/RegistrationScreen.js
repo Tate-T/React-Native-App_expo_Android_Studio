@@ -23,7 +23,7 @@ const initialState = {
 };
 
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ navigation }) {
     console.log(Platform.OS);
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [state, setstate] = useState(initialState);
@@ -124,12 +124,20 @@ export default function RegistrationScreen() {
                             >
                                 <Text style={styles.btnTitle}>SIGN IN</Text>
                             </TouchableOpacity>
-                            <Text style={styles.registrationLink}>Уже есть аккаунт? Войти</Text>
+                            <View style={styles.navigationLink}>
+                                <Text style={styles.navigationBtn}>Уже есть аккаунт? </Text>
+                                <TouchableOpacity
+                                    title=""
+                                    onPress={() => navigation.navigate('Login')}
+                                >
+                                    <Text style={styles.navigationBtn}>Войти</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </KeyboardAvoidingView>
                 </ImageBackground>
             </View>
-        </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback >
     );
 }
 
@@ -208,11 +216,14 @@ const styles = StyleSheet.create({
         letterSpacing: 0.01,
         color: '#212121',
     },
-    registrationLink: {
+    navigationLink: {
         marginTop: 16,
+        flexDirection: "row",
+        justifyContent: "center",
+    },
+    navigationBtn: {
         fontFamily: 'RobotoRegular',
         fontSize: 16,
-        color: '#1B4371',
-        textAlign: 'center',
+        color: '#1B4371'
     }
 });

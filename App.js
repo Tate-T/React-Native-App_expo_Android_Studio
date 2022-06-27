@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import RegistrationScreen from './Screens/auth/RegistrationScreen';
 import LoginScreen from './Screens/auth/LoginScreen';
 import * as Font from 'expo-font';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
 // const loadFonts = async () => {
 //   await Font.loadAsync({
@@ -10,6 +12,9 @@ import * as Font from 'expo-font';
 //     "RobotoMedium": require("../assets/fonts/Roboto-Medium.ttf"),
 //   });
 // };
+
+
+const AuthStack = createNativeStackNavigator();
 
 export default function App() {
 
@@ -28,11 +33,20 @@ export default function App() {
   // }
 
   return (
-    <View style={styles.container}>
-      <RegistrationScreen />
-      {/* <LoginScreen /> */}
+    <NavigationContainer style={styles.container}>
+      <AuthStack.Navigator>
+        <AuthStack.Screen
+          options={{ headerShown: false }}
+          name='Login'
+          component={LoginScreen} />
+        <AuthStack.Screen
+          options={{ headerShown: false }}
+          name='Registration'
+          component={RegistrationScreen} />
+      </AuthStack.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
+
   );
 }
 
