@@ -44,7 +44,7 @@ export default function MainScreen({ navigation }) {
                     <Text style={styles.textProfileEmail}>email@example.com</Text>
                 </View>
             </View>
-            <View style={styles.mainNavigation}>
+            {/* <View style={styles.mainNavigation}>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Main')}
                 >
@@ -61,9 +61,8 @@ export default function MainScreen({ navigation }) {
                 >
                     <Image source={require('../../assets/userBtn.png')} style={styles.userBtn} />
                 </TouchableOpacity>
-            </View>
+            </View> */}
 
-            <View style={styles.navigationBorder}></View>
         </View>
     );
 }
@@ -125,43 +124,4 @@ const styles = StyleSheet.create({
         color: 'rgba(33, 33, 33, 0.8)',
         fontSize: 11,
     },
-    mainNavigation: {
-        marginTop: 'auto',
-        paddingTop: 9,
-        paddingBottom: 34,
-        flexDirection: "row",
-        justifyContent: "center",
-        borderTopWidth: 1,
-        borderTopColor: '#BDBDBD'
-    },
-    addBtnContainer: {
-        width: 70,
-        height: 40, marginLeft: 31,
-        marginRight: 31,
-        backgroundColor: '#FF6C00',
-        borderRadius: 20,
-        color: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    addBtn: {
-        color: '#FFFFFF',
-        width: 13,
-        height: 13,
-    },
-    userBtn: {
-        width: 40,
-        height: 40,
-        color: '#BDBDBD',
-    },
-    navigationBorder: {
-        height: 5,
-        width: 134,
-        backgroundColor: '#212121',
-        borderWidth: 1,
-        borderRadius: 100,
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        marginBottom: 7
-    }
 });

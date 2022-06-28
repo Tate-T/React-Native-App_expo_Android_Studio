@@ -7,6 +7,7 @@ import {
     Dimensions,
     TouchableOpacity
 } from "react-native";
+import { Camera } from 'expo-camera';
 
 export default function CreateScreen({ navigation }) {
     const [dimensions, setdimensions] = useState(
@@ -26,11 +27,13 @@ export default function CreateScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Main')}
-            >
-                {/* <Image source={require('../assets/logOutBtn.png')} style={styles.logOutBtn} /> */}
-            </TouchableOpacity>
+            <Camera style={styles.camera}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Main')}
+                >
+                    <Text tyle={styles.snap}>use camers</Text>
+                </TouchableOpacity>
+            </Camera>
         </View>
     );
 }
@@ -38,7 +41,11 @@ export default function CreateScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '100%',
-        backgroundColor: '#FFFFFF'
     },
+    camera: {
+        height: 300,
+        marginTop: 50,
+        alignItems: 'center'
+    },
+    snap: { marginTop: 200 }
 });

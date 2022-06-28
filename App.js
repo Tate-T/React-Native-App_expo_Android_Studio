@@ -12,7 +12,7 @@ import { useRoute } from './router';
 // };
 
 export default function App() {
-  const routing = useRoute(null);
+  const routing = useRoute(true);
   // const [isReady, setIsReady] = useState(false);
 
   // if (!isReady) {
