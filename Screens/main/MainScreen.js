@@ -13,7 +13,7 @@ export default function MainScreen({ navigation, route }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
-    const [posts, setPosts] = useState([];)
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         if (route.params) { setPosts(prevState => [...prevState, route.params]) }
