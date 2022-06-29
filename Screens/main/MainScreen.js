@@ -9,7 +9,7 @@ import {
     TouchableOpacity
 } from "react-native";
 
-export default function MainScreen({ navigation, route }) {
+export default function MainScreen({ route, navigation }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
@@ -50,29 +50,28 @@ export default function MainScreen({ navigation, route }) {
                     <Text style={styles.textProfileEmail}>email@example.com</Text>
                 </View>
             </View>
-            {/* <View style={styles.mainNavigation}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Main')}
-                >
-                    <Image source={require('../../assets/mainBtn.png')} style={styles.userBtn} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('')}
-                >
-                    <View style={styles.addBtnContainer} >
-                        <Image source={require('../../assets/addBtn.png')} style={styles.addBtn} /></View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('')}
-                >
-                    <Image source={require('../../assets/userBtn.png')} style={styles.userBtn} />
-                </TouchableOpacity>
-            </View> */}
-            <FlatList data={posts} keyExtractor={(item, indx) => indx.toString()} renderItem={(item) =>
-            (<View style={{ marginBottom: 10, justifyContent: 'center' }}>
-                <Image source={{ uri: item.photo }}
-                    style={{ width: 350, height: 200 }} />
-            </View>)} />
+            <FlatList data={posts}
+                keyExtractor={(item, indx) => indx.toString()}
+                renderItem={(item) =>
+                (<View >
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Comment')}
+                    >
+                        <Image
+                            source={require("../../assets/avatar.png")}
+                            // source={{ uri: item.photo }}
+                            style={styles.postImage} />
+                    </TouchableOpacity>
+
+                    <Text style={styles.nameDescription}>name</Text>
+                    <View style={styles.description}>
+                        <Image source={require('../../assets/comment.png')} style={styles.commentIcon} />
+                        <Text style={styles.commentDescription}>0</Text>
+                        <Image source={require('../../assets/map.png')} style={styles.locationIcon} />
+                        <Text style={styles.locationDescription}>location</Text>
+                    </View>
+                </View>)}
+                style={styles.list} />
         </View>
     );
 }
@@ -81,7 +80,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
+        paddingHorizontal: 16
     },
     mainHeader: {
         marginTop: 55,
@@ -106,14 +106,13 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
         // backgroundColor: '#BDBDBD',
-        fill: '#BDBDBD',
-        color: '#BDBDBD',
+        // fill: '#BDBDBD',
+        // color: '#BDBDBD',
     },
     mainProfile: {
         flexDirection: "row",
         alignItems: 'center',
         marginTop: 32,
-        borderRadius: 16
     },
     avatarProfile: {
         width: 60,
@@ -134,4 +133,42 @@ const styles = StyleSheet.create({
         color: 'rgba(33, 33, 33, 0.8)',
         fontSize: 11,
     },
+    list: {
+        marginTop: 32,
+    },
+    postImage: {
+        height: 240,
+        width: '100%',
+        borderRadius: 8
+    },
+    nameDescription: {
+        marginTop: 11,
+        color: '#212121',
+        fontFamily: 'Roboto',
+        fontWeight: '500',
+        fontSize: 16,
+        lineHeight: 18.75
+    },
+    commentDescription: {
+        marginLeft: 9,
+        marginRight: 53,
+        color: '#BDBDBD',
+        fontFamily: 'Roboto',
+        fontWeight: '400',
+        fontSize: 16,
+        lineHeight: 18.75
+    },
+    description: {
+        flexDirection: 'row',
+        marginTop: 11,
+        marginBottom: 32
+    },
+    locationDescription: {
+        marginLeft: 8,
+        color: '#212121',
+        textDecorationLine: 'underline',
+        fontFamily: 'Roboto',
+        fontWeight: '400',
+        fontSize: 16,
+    }
 });

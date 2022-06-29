@@ -88,14 +88,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     addBtn: {
-        color: '#FFFFFF',
+        // color: '#FFFFFF',
         width: 13,
         height: 13,
     },
     userBtn: {
         width: 40,
         height: 40,
-        color: '#BDBDBD',
+        // color: '#BDBDBD',
     },
     // navigationBorder: {
     //     height: 5,

@@ -100,7 +100,7 @@ export default function CreateScreen({ navigation }) {
                 />
             </View>
             <View style={styles.inputLocation}>
-                {!state.location && <Image source={require('../../assets/map.png')} style={styles.locationIcon} />}
+                <Image source={require('../../assets/map.png')} style={styles.locationIcon} />
                 <TextInput
                     style={styles.inputText}
                     placeholder="Location..."
@@ -113,7 +113,7 @@ export default function CreateScreen({ navigation }) {
                     }
                 />
             </View>
-            {
+            {/* {
                 photo ? <TouchableOpacity
                     onPress={sendPhoto}
                     style={styles.sendPhotoBtn}
@@ -125,7 +125,13 @@ export default function CreateScreen({ navigation }) {
                     >
                         <Text style={styles.publishTextNotActive}>Publish</Text>
                     </View>
-            }
+            } */}
+            <TouchableOpacity
+                onPress={sendPhoto}
+                style={styles.sendPhotoBtn}
+            >
+                <Text style={styles.publishText}>Publish</Text>
+            </TouchableOpacity>
             <TouchableOpacity
                 onPress={deleteBtn}
                 style={styles.deleteBtn}
@@ -161,7 +167,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         width: 24,
         height: 24,
-        fill: '#BDBDBD',
+        // fill: '#BDBDBD',
     },
     cameraContainer: {
         marginTop: 32,
@@ -195,7 +201,7 @@ const styles = StyleSheet.create({
         lineHeight: 19
     },
     inputText: {
-        color: '#212121d',
+        color: '#212121',
         fontFamily: 'Roboto',
         fontWeight: '400',
         fontSize: 16,
@@ -219,7 +225,8 @@ const styles = StyleSheet.create({
     locationIcon: {
         width: 24,
         height: 24,
-        marginRight: 4
+        marginRight: 4,
+        marginBottom: 15,
     },
     sendPhotoBtn: {
         backgroundColor: "#FF6C00",
