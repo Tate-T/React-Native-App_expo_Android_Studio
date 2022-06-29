@@ -19,6 +19,7 @@ export default function CreateScreen({ navigation }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
+    const [cameraRef, setCameraRef] = useState(null);
     const [camera, setCamera] = useState(null);
     const [photo, setPhoto] = useState(null);
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -68,7 +69,7 @@ export default function CreateScreen({ navigation }) {
                 <Text style={styles.createTitle}>Create publication</Text>
             </View>
             <View style={styles.cameraContainer}>
-                <Camera style={styles.camera} >
+                <Camera style={styles.camera} ref={(ref) => { setCamera(ref) }}>
                     {photo && <View style={styles.takePhotoContainer}>
                         <Image source={{ uri: photo }} />
                     </View>}
