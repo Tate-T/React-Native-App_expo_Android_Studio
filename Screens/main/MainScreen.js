@@ -2,16 +2,22 @@ import React, { useState, useEffect } from "react";
 import {
     StyleSheet,
     View,
+    FlatList,
     Text,
     Image,
     Dimensions,
     TouchableOpacity
 } from "react-native";
 
-export default function MainScreen({ navigation }) {
+export default function MainScreen({ navigation, route }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
+    const [posts, setPosts] = useState([];)
+
+    useEffect(() => {
+        if (route.params) { setPosts(prevState => [...prevState, route.params]) }
+    }, [route.params])
 
     useEffect(() => {
         const onChange = () => {
@@ -62,7 +68,11 @@ export default function MainScreen({ navigation }) {
                     <Image source={require('../../assets/userBtn.png')} style={styles.userBtn} />
                 </TouchableOpacity>
             </View> */}
-
+            <FlatList data={posts} keyExtractor={(item, indx) => indx.toString()} renderItem={(item) =>
+            (<View style={{ marginBottom: 10, justifyContent: 'center' }}>
+                <Image source={{ uri: item.photo }}
+                    style={{ width: 350, height: 200 }} />
+            </View>)} />
         </View>
     );
 }
