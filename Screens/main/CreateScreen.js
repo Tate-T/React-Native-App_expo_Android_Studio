@@ -13,6 +13,13 @@ export default function CreateScreen({ navigation }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
+    const [camera, setCamera] = useState(null);
+    const [photo, setPhoto] = useState(null);
+
+    const takePhoto = async () => {
+        const photo = await camera.takePictureAsunc();
+        setPhoto(photo.uri);
+    };
 
     useEffect(() => {
         const onChange = () => {
@@ -28,10 +35,14 @@ export default function CreateScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Camera style={styles.camera}>
+                {photo && <View style={styles.takePhotoContainer}>
+                    <Image source={{ uri: photo }} />
+                </View>}
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Main')}
+                    onPress={takePhoto}
+                    style={styles.snapContainer}
                 >
-                    <Text tyle={styles.snap}>use camers</Text>
+                    <Text style={styles.snap}>use camers</Text>
                 </TouchableOpacity>
             </Camera>
         </View>
@@ -43,9 +54,18 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     camera: {
-        height: 300,
+        flex: 1,
         marginTop: 50,
         alignItems: 'center'
     },
-    snap: { marginTop: 200 }
+    snap: { marginTop: 200 },
+    takePhotoContainer: {
+        position: "absolute",
+        top: 50,
+        left: 10,
+        height: 200,
+        width: 200,
+        borderColor: '#fff',
+        borderWidth: 1
+    }
 });
