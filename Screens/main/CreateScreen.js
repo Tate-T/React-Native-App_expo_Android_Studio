@@ -57,7 +57,7 @@ export default function CreateScreen({ navigation }) {
         <View style={styles.container}>
             <View style={styles.createHeader}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Login')}
+                    onPress={() => navigation.navigate('Main')}
                 >
                     <Image source={require('../../assets/backBtn.png')} style={styles.backBtn} />
                 </TouchableOpacity>
@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
         fill: '#BDBDBD',
-        color: '#BDBDBD',
     },
     cameraContainer: {
         marginTop: 32,

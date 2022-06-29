@@ -48,6 +48,7 @@ export const useRoute = (isAuth) => {
                 <MainTab.Screen
                     options={{
                         headerShown: false,
+                        tabBarStyle: { display: 'none' },
                         tabBarIcon: ({ focused }) => <View style={styles.addBtnContainer} >
                             <Image source={require('./assets/addBtn.png')} style={styles.addBtn} />
                         </View>
@@ -56,6 +57,7 @@ export const useRoute = (isAuth) => {
                 <MainTab.Screen
                     options={{
                         headerShown: false,
+                        tabBarStyle: { display: 'none' },
                         tabBarIcon: ({ focused }) => <Image source={require('./assets/userBtn.png')} style={styles.userBtn} />
                     }}
                     name="Profile" component={ProfileScreen} />
