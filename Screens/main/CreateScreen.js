@@ -34,6 +34,10 @@ export default function CreateScreen({ navigation }) {
         setstate('')
     };
 
+    const deleteBtn = () => {
+        setPhoto(null)
+        setstate('')
+    };
 
     const keyboardHide = () => {
         setIsShowKeyboard(false);
@@ -84,7 +88,7 @@ export default function CreateScreen({ navigation }) {
             <View style={styles.inputName}>
                 <TextInput
                     style={styles.inputText}
-                    placeholder="Name"
+                    placeholder="Name..."
                     placeholderTextColor='#BDBDBD'
                     textAlign={"left"}
                     onFocus={() => setIsShowKeyboard(true)}
@@ -98,7 +102,7 @@ export default function CreateScreen({ navigation }) {
                 {!state.location && <Image source={require('../../assets/map.png')} style={styles.locationIcon} />}
                 <TextInput
                     style={styles.inputText}
-                    placeholder="Location"
+                    placeholder="Location..."
                     placeholderTextColor='#BDBDBD'
                     textAlign={"left"}
                     onFocus={() => setIsShowKeyboard(true)}
@@ -121,6 +125,12 @@ export default function CreateScreen({ navigation }) {
                         <Text style={styles.publishTextNotActive}>Publish</Text>
                     </View>
             }
+            <TouchableOpacity
+                onPress={deleteBtn}
+                style={styles.deleteBtn}
+            >
+                <Image source={require('../../assets/deleteBtn.png')} />
+            </TouchableOpacity>
         </View >
     );
 }
@@ -128,8 +138,8 @@ export default function CreateScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 16,
-        borderColor: '#fff'
+        paddingHorizontal: 16,
+        backgroundColor: '#FFFFFF'
     },
     createHeader: {
         marginTop: 55,
@@ -157,11 +167,11 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#E8E8E8',
         borderRadius: 8,
-        backgroundColor: '#F6F6F6',
     },
     camera: {
         alignItems: 'center',
-        height: 240
+        height: 240,
+        backgroundColor: '#F6F6F6',
     },
     snap: { marginTop: 200 },
     snapIcon: {
@@ -225,9 +235,9 @@ const styles = StyleSheet.create({
         marginTop: 32,
         justifyContent: "center",
         alignItems: "center",
-        borderWidth: 3,
-        borderColor: '#E8E8E8',
-        backgroundColor: '#F6F6F6',
+        // borderWidth: 3,
+        // borderColor: '#E8E8E8',
+        // backgroundColor: '#F6F6F6',
     },
     publishText: {
         color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
@@ -236,5 +246,17 @@ const styles = StyleSheet.create({
     publishTextNotActive: {
         color: '#BDBDBD',
         fontSize: 18,
+    },
+    deleteBtn: {
+        marginTop: 'auto',
+        marginBottom: 22,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        backgroundColor: '#F6F6F6',
+        paddingTop: 8,
+        paddingBottom: 8,
+        paddingLeft: 23,
+        paddingRight: 23,
+        borderRadius: 20
     }
 });
