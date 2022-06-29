@@ -8,9 +8,9 @@ import {
 import RegistrationScreen from './Screens/auth/RegistrationScreen';
 import LoginScreen from './Screens/auth/LoginScreen';
 import MainScreen from './Screens/main/MainScreen';
-import PostScreen from './Screens/main/PostScreen';
 import CreateScreen from './Screens/main/CreateScreen';
 import ProfileScreen from './Screens/main/ProfileScreen';
+import CommentScreen from './Screens/main/CommentScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -61,6 +61,14 @@ export const useRoute = (isAuth) => {
                         tabBarIcon: ({ focused }) => <Image source={require('./assets/userBtn.png')} style={styles.userBtn} />
                     }}
                     name="Profile" component={ProfileScreen} />
+
+                <MainTab.Screen
+                    options={{
+                        headerShown: false,
+                        tabBarStyle: { display: 'none' }
+                    }}
+                    name='Comment'
+                    component={CommentScreen} />
             </MainTab.Navigator>
             {/* <View style={styles.navigationBorder}></View> */}
         </>
