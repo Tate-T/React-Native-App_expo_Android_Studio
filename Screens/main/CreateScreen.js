@@ -21,6 +21,10 @@ export default function CreateScreen({ navigation }) {
         setPhoto(photo.uri);
     };
 
+    const sendPhoto = async () => {
+        navigation.navigate("Main", { photo });
+    };
+
     useEffect(() => {
         const onChange = () => {
             const width = Dimensions.get("window").width - 16 * 2;
@@ -42,9 +46,15 @@ export default function CreateScreen({ navigation }) {
                     onPress={takePhoto}
                     style={styles.snapContainer}
                 >
-                    <Text style={styles.snap}>use camers</Text>
+                    <Text style={styles.snap}>use camera</Text>
                 </TouchableOpacity>
             </Camera>
+            <TouchableOpacity
+                onPress={sendPhoto}
+                style={styles.sendPhotoBtn}
+            >
+                <Text style={styles.publishText}>Publish</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -67,5 +77,17 @@ const styles = StyleSheet.create({
         width: 200,
         borderColor: '#fff',
         borderWidth: 1
-    }
+    },
+    sendPhotoBtn: {
+        backgroundColor: "#FF6C00",
+        borderRadius: 100,
+        height: 51,
+        marginTop: 43,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    publishText: {
+        color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
+        fontSize: 18,
+    },
 });
