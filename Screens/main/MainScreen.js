@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
     StyleSheet,
     View,
-    FlatList,
     Text,
     Image,
     Dimensions,
     TouchableOpacity
 } from "react-native";
+import PostList from "../../components/PostsList";
 
 export default function MainScreen({ route, navigation }) {
     const [dimensions, setdimensions] = useState(
@@ -50,28 +50,12 @@ export default function MainScreen({ route, navigation }) {
                     <Text style={styles.textProfileEmail}>email@example.com</Text>
                 </View>
             </View>
-            <FlatList data={posts}
-                keyExtractor={(item, indx) => indx.toString()}
-                renderItem={(item) =>
-                (<View >
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Comment')}
-                    >
-                        <Image
-                            source={require("../../assets/avatar.png")}
-                            // source={{ uri: item.photo }}
-                            style={styles.postImage} />
-                    </TouchableOpacity>
 
-                    <Text style={styles.nameDescription}>name</Text>
-                    <View style={styles.description}>
-                        <Image source={require('../../assets/comment.png')} style={styles.commentIcon} />
-                        <Text style={styles.commentDescription}>0</Text>
-                        <Image source={require('../../assets/map.png')} style={styles.locationIcon} />
-                        <Text style={styles.locationDescription}>location</Text>
-                    </View>
-                </View>)}
-                style={styles.list} />
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Comment')}
+            >
+                <PostList posts={posts} />
+            </TouchableOpacity>
         </View>
     );
 }
@@ -105,9 +89,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         width: 24,
         height: 24,
-        // backgroundColor: '#BDBDBD',
-        // fill: '#BDBDBD',
-        // color: '#BDBDBD',
     },
     mainProfile: {
         flexDirection: "row",
@@ -133,42 +114,4 @@ const styles = StyleSheet.create({
         color: 'rgba(33, 33, 33, 0.8)',
         fontSize: 11,
     },
-    list: {
-        marginTop: 32,
-    },
-    postImage: {
-        height: 240,
-        width: '100%',
-        borderRadius: 8
-    },
-    nameDescription: {
-        marginTop: 11,
-        color: '#212121',
-        fontFamily: 'Roboto',
-        fontWeight: '500',
-        fontSize: 16,
-        lineHeight: 18.75
-    },
-    commentDescription: {
-        marginLeft: 9,
-        marginRight: 53,
-        color: '#BDBDBD',
-        fontFamily: 'Roboto',
-        fontWeight: '400',
-        fontSize: 16,
-        lineHeight: 18.75
-    },
-    description: {
-        flexDirection: 'row',
-        marginTop: 11,
-        marginBottom: 32
-    },
-    locationDescription: {
-        marginLeft: 8,
-        color: '#212121',
-        textDecorationLine: 'underline',
-        fontFamily: 'Roboto',
-        fontWeight: '400',
-        fontSize: 16,
-    }
 });

@@ -9,8 +9,9 @@ import {
     TouchableOpacity,
     FlatList
 } from "react-native";
+import PostList from "../../components/PostsList";
 
-export default function PorofileScreen({ navigation }) {
+export default function PorofileScreen({ posts, navigation }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
@@ -52,29 +53,12 @@ export default function PorofileScreen({ navigation }) {
                         <Text style={styles.headerTitle}>Natali Romanova</Text>
                     </View>
 
-                    <FlatList
-                        data={posts}
-                        keyExtractor={(item, indx) => indx.toString()}
-                        renderItem={(item) =>
-                        (<View >
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('Comment')}
-                            >
-                                <Image
-                                    source={require("../../assets/avatar.png")}
-                                    // source={{ uri: item.photo }}
-                                    style={styles.postImage} />
-                            </TouchableOpacity>
 
-                            <Text style={styles.nameDescription}>name</Text>
-                            <View style={styles.description}>
-                                <Image source={require('../../assets/comment.png')} style={styles.commentIcon} />
-                                <Text style={styles.commentDescription}>0</Text>
-                                <Image source={require('../../assets/map.png')} style={styles.locationIcon} />
-                                <Text style={styles.locationDescription}>location</Text>
-                            </View>
-                        </View>)}
-                        style={styles.list} />
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Comment')}
+                    >
+                        <PostList posts={posts} />
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         </View>
@@ -134,7 +118,7 @@ const styles = StyleSheet.create({
         marginBottom: 33,
     },
     headerTitle: {
-        fontFamily: 'RobotoMedium',
+        fontFamily: 'Roboto',
         fontSize: 30,
         lineHeight: 35.16,
         textAlign: 'center',
