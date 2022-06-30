@@ -9,6 +9,7 @@ import {
     TouchableOpacity
 } from "react-native";
 import { Camera } from 'expo-camera';
+import * as Location from 'expo-location';
 
 const initialState = {
     name: "",
@@ -27,6 +28,7 @@ export default function CreateScreen({ navigation }) {
 
     const takePhoto = async () => {
         const photo = await camera.takePictureAsunc();
+        const location = await Location.getCurrentPositionAsync()
         setPhoto(photo.uri);
     };
 
@@ -48,6 +50,14 @@ export default function CreateScreen({ navigation }) {
     };
 
     useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                setErrorMsg('Permission to access location was denied');
+                return;
+            }
+        })();
+
         const onChange = () => {
             const width = Dimensions.get("window").width - 16 * 2;
             setdimensions(width);
