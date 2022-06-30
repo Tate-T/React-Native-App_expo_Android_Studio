@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { useRoute } from './router';
+import { Provider } from 'react-redux';
+import { store } from './redux/dashboard/store';
 
 // const loadFonts = async () => {
 //   await Font.loadAsync({
@@ -28,11 +30,11 @@ export default function App() {
   // }
 
   return (
-    <NavigationContainer style={styles.container}>
-      {routing}
-      <StatusBar style="auto" />
-    </NavigationContainer>
-
+    <Provider store={store}>
+      <NavigationContainer style={styles.container}>
+        {routing}
+      </NavigationContainer>
+    </Provider>
   );
 }
 
