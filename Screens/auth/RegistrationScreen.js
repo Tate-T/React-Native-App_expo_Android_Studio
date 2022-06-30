@@ -15,6 +15,9 @@ import {
     TouchableWithoutFeedback,
     Dimensions
 } from "react-native";
+import { useDispatch } from "react-redux";
+
+import { authSignUpUser } from "../../redux/auth/authOperations";
 
 const initialState = {
     login: "",
@@ -27,6 +30,9 @@ export default function RegistrationScreen({ navigation }) {
     console.log(Platform.OS);
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [state, setstate] = useState(initialState);
+
+    const dispatch = useDispatch();
+
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2);
 
@@ -36,20 +42,20 @@ export default function RegistrationScreen({ navigation }) {
             setdimensions(width);
         };
         Dimensions.addEventListener("change", onChange);
-        // return () => {
-        //     Dimensions.removeEventListener("change", onChange);
-        // };
+        return () => {
+            Dimensions.removeEventListener("change", onChange);
+        };
     }, []);
 
-    const keyboardHide = () => {
+    const handleSubmit = () => {
         setIsShowKeyboard(false);
         Keyboard.dismiss();
-        console.log(state);
+        dispatch(authSignUpUser(state));
         setstate(initialState);
     };
 
     return (
-        <TouchableWithoutFeedback onPress={keyboardHide}>
+        <TouchableWithoutFeedback onPress={handleSubmit}>
             <View style={styles.container}>
                 <ImageBackground
                     style={styles.image}
@@ -120,7 +126,7 @@ export default function RegistrationScreen({ navigation }) {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 style={styles.btn}
-                                onPress={keyboardHide}
+                                onPress={handleSubmit}
                             >
                                 <Text style={styles.btnTitle}>Sign up</Text>
                             </TouchableOpacity>

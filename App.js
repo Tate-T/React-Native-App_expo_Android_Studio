@@ -14,7 +14,7 @@ import { store } from './redux/dashboard/store';
 // };
 
 export default function App() {
-  const routing = useRoute(true);
+  const routing = useRoute(false);
   // const [isReady, setIsReady] = useState(false);
 
   // if (!isReady) {

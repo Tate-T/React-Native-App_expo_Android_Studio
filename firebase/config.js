@@ -1,13 +1,13 @@
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA0X_XmjQL2ajHtqAnrlxo8iLwctyd5Fps",
+    apiKey: "AIzaSyDbD4_csgU6mtpBBNfNM-NUD5fBEcClEoA",
     authDomain: "react-native-app-b4fbc.firebaseapp.com",
     projectId: "react-native-app-b4fbc",
     storageBucket: "react-native-app-b4fbc.appspot.com",
     messagingSenderId: "164215625913",
-    appId: "1:164215625913:android:faae2305c23c1b94212368",
+    appId: "1:164215625913:android:e453e0f49e8488d0212368",
 };
 
 // const firebaseConfig = {
@@ -23,5 +23,4 @@ const firebaseConfig = {
 //     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ksmgg%40react-native-app-b4fbc.iam.gserviceaccount.com"
 // }
 
-firebase.initializeApp(firebaseConfig)
-export default firebase;
+export default firebase.initializeApp(firebaseConfig)
