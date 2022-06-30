@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import PostList from "../../components/PostsList";
 
-export default function PorofileScreen({ posts, navigation }) {
+export default function ProfileScreen({ posts, navigation }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
@@ -51,14 +51,14 @@ export default function PorofileScreen({ posts, navigation }) {
                             <Text style={styles.avatarBtn}>&#9587;</Text>
                         </TouchableOpacity>
                         <Text style={styles.headerTitle}>Natali Romanova</Text>
+                        {/* <TouchableOpacity
+                            onPress={() => navigation.navigate('Comment')}
+                        > */}
+                        <PostList posts={posts} onPressComment={() => navigation.navigate('Comment')} onPressMap={() => navigation.navigate('Map')} />
+                        {/* </TouchableOpacity> */}
                     </View>
 
 
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Comment')}
-                    >
-                        <PostList posts={posts} />
-                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         </View>
@@ -68,8 +68,6 @@ export default function PorofileScreen({ posts, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '100%',
-        backgroundColor: '#FFFFFF'
     },
     postsContainer: {
         backgroundColor: '#fff',

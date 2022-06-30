@@ -33,7 +33,7 @@ export default function CreateScreen({ navigation }) {
     };
 
     const sendPhoto = async () => {
-        navigation.navigate("Main", { photo });
+        navigation.navigate("Default", { photo });
         setstate('')
     };
 
@@ -72,58 +72,59 @@ export default function CreateScreen({ navigation }) {
         <View style={styles.container}>
             <View style={styles.createHeader}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Main')}
+                    onPress={() => navigation.navigate('Post')}
                 >
                     <Image source={require('../../assets/backBtn.png')} style={styles.backBtn} />
                 </TouchableOpacity>
                 <Text style={styles.createTitle}>Create publication</Text>
             </View>
-            <View style={styles.cameraContainer}>
-                <Camera style={styles.camera} ref={(ref) => { setCamera(ref) }}>
-                    {photo && <View style={styles.takePhotoContainer}>
-                        <Image source={{ uri: photo }} />
-                    </View>}
-                    <TouchableOpacity
-                        onPress={takePhoto}
-                        style={styles.snapContainer}
-                    >
-                        <Image source={require('../../assets/camera.png')} style={styles.snapIcon} />
-                    </TouchableOpacity>
-                </Camera>
-            </View>
-            {
-                photo ?
-                    <Text style={styles.downloadText}>Edit photo</Text>
-                    : <Text style={styles.downloadText}>Download photo</Text>
-            }
-            <View style={styles.inputName}>
-                <TextInput
-                    style={styles.inputText}
-                    placeholder="Name..."
-                    placeholderTextColor='#BDBDBD'
-                    textAlign={"left"}
-                    onFocus={() => setIsShowKeyboard(true)}
-                    value={state.name}
-                    onChangeText={(value) =>
-                        setstate((prevState) => ({ ...prevState, name: value }))
-                    }
-                />
-            </View>
-            <View style={styles.inputLocation}>
-                <Image source={require('../../assets/map.png')} style={styles.locationIcon} />
-                <TextInput
-                    style={styles.inputText}
-                    placeholder="Location..."
-                    placeholderTextColor='#BDBDBD'
-                    textAlign={"left"}
-                    onFocus={() => setIsShowKeyboard(true)}
-                    value={state.location}
-                    onChangeText={(value) =>
-                        setstate((prevState) => ({ ...prevState, location: value }))
-                    }
-                />
-            </View>
-            {/* {
+            <View style={styles.cameraContainerMrg}>
+                <View style={styles.cameraContainer}>
+                    <Camera style={styles.camera} ref={(ref) => { setCamera(ref) }}>
+                        {photo && <View style={styles.takePhotoContainer}>
+                            <Image source={{ uri: photo }} />
+                        </View>}
+                        <TouchableOpacity
+                            onPress={takePhoto}
+                            style={styles.snapContainer}
+                        >
+                            <Image source={require('../../assets/camera.png')} style={styles.snapIcon} />
+                        </TouchableOpacity>
+                    </Camera>
+                </View>
+                {
+                    photo ?
+                        <Text style={styles.downloadText}>Edit photo</Text>
+                        : <Text style={styles.downloadText}>Download photo</Text>
+                }
+                <View style={styles.inputName}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Name..."
+                        placeholderTextColor='#BDBDBD'
+                        textAlign={"left"}
+                        onFocus={() => setIsShowKeyboard(true)}
+                        value={state.name}
+                        onChangeText={(value) =>
+                            setstate((prevState) => ({ ...prevState, name: value }))
+                        }
+                    />
+                </View>
+                <View style={styles.inputLocation}>
+                    <Image source={require('../../assets/map.png')} style={styles.locationIcon} />
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Location..."
+                        placeholderTextColor='#BDBDBD'
+                        textAlign={"left"}
+                        onFocus={() => setIsShowKeyboard(true)}
+                        value={state.location}
+                        onChangeText={(value) =>
+                            setstate((prevState) => ({ ...prevState, location: value }))
+                        }
+                    />
+                </View>
+                {/* {
                 photo ? <TouchableOpacity
                     onPress={sendPhoto}
                     style={styles.sendPhotoBtn}
@@ -136,18 +137,19 @@ export default function CreateScreen({ navigation }) {
                         <Text style={styles.publishTextNotActive}>Publish</Text>
                     </View>
             } */}
-            <TouchableOpacity
-                onPress={sendPhoto}
-                style={styles.sendPhotoBtn}
-            >
-                <Text style={styles.publishText}>Publish</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={deleteBtn}
-                style={styles.deleteBtn}
-            >
-                <Image source={require('../../assets/deleteBtn.png')} />
-            </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={sendPhoto}
+                    style={styles.sendPhotoBtn}
+                >
+                    <Text style={styles.publishText}>Publish</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={deleteBtn}
+                    style={styles.deleteBtn}
+                >
+                    <Image source={require('../../assets/deleteBtn.png')} />
+                </TouchableOpacity>
+            </View>
         </View >
     );
 }
@@ -155,14 +157,14 @@ export default function CreateScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 16,
         backgroundColor: '#FFFFFF'
     },
     createHeader: {
         marginTop: 55,
         flexDirection: "row",
         borderBottomWidth: 1,
-        borderBottomColor: '#BDBDBD'
+        borderBottomColor: '#BDBDBD',
+        paddingHorizontal: 16,
     },
     createTitle: {
         color: '#212121',
@@ -179,16 +181,19 @@ const styles = StyleSheet.create({
         height: 24,
         // fill: '#BDBDBD',
     },
+    cameraContainerMrg: {
+        paddingHorizontal: 16,
+    },
     cameraContainer: {
         marginTop: 32,
         borderWidth: 3,
+        backgroundColor: '#F6F6F6',
         borderColor: '#E8E8E8',
         borderRadius: 8,
     },
     camera: {
         alignItems: 'center',
         height: 240,
-        backgroundColor: '#F6F6F6',
     },
     snap: { marginTop: 200 },
     snapIcon: {
@@ -236,7 +241,6 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
         marginRight: 4,
-        marginBottom: 15,
     },
     sendPhotoBtn: {
         backgroundColor: "#FF6C00",
@@ -266,7 +270,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     deleteBtn: {
-        marginTop: 'auto',
+        marginTop: 55,
         marginBottom: 22,
         marginLeft: 'auto',
         marginRight: 'auto',

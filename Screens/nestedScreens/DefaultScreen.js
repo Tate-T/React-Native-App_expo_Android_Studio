@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import PostList from "../../components/PostsList";
 
-export default function MainScreen({ route, navigation }) {
+export default function DefaultScreen({ route, navigation }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
@@ -32,15 +32,15 @@ export default function MainScreen({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.mainHeader}>
-                <Text style={styles.mainTitle}>Publications</Text>
+            <View style={styles.postHeader}>
+                <Text style={styles.postTitle}>Publications</Text>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Login')}
                 >
                     <Image source={require('../../assets/logOutBtn.png')} style={styles.logOutBtn} />
                 </TouchableOpacity>
             </View>
-            <View style={styles.mainProfile}>
+            <View style={styles.postProfile}>
                 <Image
                     style={styles.avatarProfile}
                     source={require("../../assets/avatar.png")}
@@ -50,12 +50,7 @@ export default function MainScreen({ route, navigation }) {
                     <Text style={styles.textProfileEmail}>email@example.com</Text>
                 </View>
             </View>
-
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Comment')}
-            >
-                <PostList posts={posts} />
-            </TouchableOpacity>
+            <PostList posts={posts} onPressComment={() => navigation.navigate('Comment')} onPressMap={() => navigation.navigate('Map')} />
         </View>
     );
 }
@@ -64,17 +59,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        backgroundColor: '#FFFFFF',
-        paddingHorizontal: 16
+        backgroundColor: '#FFFFFF'
     },
-    mainHeader: {
+    postHeader: {
         marginTop: 55,
         flexDirection: "row",
         justifyContent: "flex-end",
         borderBottomWidth: 1,
-        borderBottomColor: '#BDBDBD'
+        borderBottomColor: '#BDBDBD',
+        paddingHorizontal: 16
     },
-    mainTitle: {
+    postTitle: {
         marginRight: 100,
         textAlign: 'center',
         color: '#212121',
@@ -90,7 +85,7 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
     },
-    mainProfile: {
+    postProfile: {
         flexDirection: "row",
         alignItems: 'center',
         marginTop: 32,
@@ -98,7 +93,7 @@ const styles = StyleSheet.create({
     avatarProfile: {
         width: 60,
         height: 60,
-        marginLeft: 16
+        marginLeft: 16,
     },
     textProfile: {
         marginLeft: 8,

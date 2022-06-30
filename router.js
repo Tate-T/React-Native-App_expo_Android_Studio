@@ -7,10 +7,9 @@ import {
 
 import RegistrationScreen from './Screens/auth/RegistrationScreen';
 import LoginScreen from './Screens/auth/LoginScreen';
-import MainScreen from './Screens/main/MainScreen';
+import PostsScreen from './Screens/main/PostsScreen';
 import CreateScreen from './Screens/main/CreateScreen';
 import ProfileScreen from './Screens/main/ProfileScreen';
-import CommentScreen from './Screens/nestedScreens/CommentScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -23,8 +22,8 @@ export const useRoute = (isAuth) => {
         return (<AuthStack.Navigator>
             <AuthStack.Screen
                 options={{ headerShown: false }}
-                name='Main'
-                component={MainScreen} />
+                name='Post'
+                component={PostsScreen} />
             <AuthStack.Screen
                 options={{ headerShown: false }}
                 name='Login'
@@ -43,8 +42,9 @@ export const useRoute = (isAuth) => {
                 <MainTab.Screen
                     options={{
                         headerShown: false,
-                        tabBarIcon: ({ focused }) => <Image source={require('./assets/mainBtn.png')} style={styles.userBtn} />
-                    }} name="Main" component={MainScreen} />
+                        tabBarIcon: ({ focused }) =>
+                            <Image source={require('./assets/mainBtn.png')} style={styles.userBtn} />
+                    }} name="Post" component={PostsScreen} />
                 <MainTab.Screen
                     options={{
                         headerShown: false,
@@ -57,18 +57,10 @@ export const useRoute = (isAuth) => {
                 <MainTab.Screen
                     options={{
                         headerShown: false,
-                        tabBarStyle: { display: 'none' },
+                        // tabBarStyle: { display: 'none' },
                         tabBarIcon: ({ focused }) => <Image source={require('./assets/userBtn.png')} style={styles.userBtn} />
                     }}
                     name="Profile" component={ProfileScreen} />
-
-                <MainTab.Screen
-                    options={{
-                        headerShown: false,
-                        tabBarStyle: { display: 'none' }
-                    }}
-                    name='Comment'
-                    component={CommentScreen} />
             </MainTab.Navigator>
             {/* <View style={styles.navigationBorder}></View> */}
         </>

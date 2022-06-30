@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import {
     StyleSheet,
     View,
-    Text,
-    TextInput,
     Image,
     Dimensions,
-    TouchableOpacity,
-    FlatList
+    TouchableOpacity
 } from "react-native";
 import MapView, { Marker } from 'react-native-maps';
 
@@ -17,6 +14,10 @@ export default function MapScreen({ navigation }) {
     );
 
     useEffect(() => {
+        const onChange = () => {
+            const width = Dimensions.get("window").width - 16 * 2;
+            setdimensions(width);
+        };
         Dimensions.addEventListener("change", onChange);
         return () => {
             Dimensions.removeEventListener("change", onChange);
@@ -25,10 +26,15 @@ export default function MapScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Default')}
+            >
+                <Image source={require('../../assets/backBtn.png')} style={styles.backBtn} />
+            </TouchableOpacity>
             <MapView
                 style={styles.mapContainer}
                 initialRegion={{ longitude: '', latitude: '', latitudeDelta: '', longitudeDelta: '' }}>
-                <Marker title="location" coordinate={{ longitude: '', latitude: '' }} />
+                {/* <Marker title="location" coordinate={{ longitude: '', latitude: '' }} /> */}
             </MapView>
         </View>
     );
@@ -42,5 +48,11 @@ const styles = StyleSheet.create({
     },
     mapContainer: {
         flex: 1
-    }
+    },
+    backBtn: {
+        marginTop: 50,
+        marginBottom: 10,
+        width: 24,
+        height: 24,
+    },
 });

@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from "react-native";
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts, onPressComment, onPressMap }) => {
     return (
         <FlatList
             style={styles.list}
@@ -16,17 +16,28 @@ const PostList = ({ posts }) => {
             keyExtractor={(item, indx) => indx.toString()}
             renderItem={(item) =>
             (<View >
-                <Image
-                    source={require("../assets/avatar.png")}
-                    // source={{ uri: item.photo }}
-                    style={styles.postImage} />
-
+                <TouchableOpacity
+                    onPress={onPressComment}
+                >
+                    <Image
+                        source={require("../assets/avatar.png")}
+                        // source={{ uri: item.photo }}
+                        style={styles.postImage} />
+                </TouchableOpacity>
                 <Text style={styles.nameDescription}>name</Text>
                 <View style={styles.description}>
-                    <Image source={require('../assets/comment.png')} style={styles.commentIcon} />
-                    <Text style={styles.commentDescription}>0</Text>
+                    <TouchableOpacity
+                        onPress={onPressComment}
+                    >
+                        <Image source={require('../assets/comment.png')} style={styles.commentIcon} />
+                        <Text style={styles.commentDescription}>0</Text>
+                    </TouchableOpacity>
                     <Image source={require('../assets/map.png')} style={styles.locationIcon} />
-                    <Text style={styles.locationDescription}>location</Text>
+                    <TouchableOpacity
+                        onPress={onPressMap}
+                    >
+                        <Text style={styles.locationDescription}>location</Text>
+                    </TouchableOpacity>
                 </View>
             </View>)} />
     )
@@ -34,6 +45,7 @@ const PostList = ({ posts }) => {
 
 const styles = StyleSheet.create({
     list: {
+        paddingHorizontal: 16,
         marginTop: 32,
     },
     postImage: {

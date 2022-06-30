@@ -37,7 +37,7 @@ export default function CommentScreen({ navigation }) {
         <View style={styles.container}>
             <View style={styles.commentHeader}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Main')}
+                    onPress={() => navigation.navigate('Default')}
                 >
                     <Image source={require('../../assets/backBtn.png')} style={styles.backBtn} />
                 </TouchableOpacity>
