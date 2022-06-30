@@ -10,7 +10,7 @@ import LoginScreen from './Screens/auth/LoginScreen';
 import MainScreen from './Screens/main/MainScreen';
 import CreateScreen from './Screens/main/CreateScreen';
 import ProfileScreen from './Screens/main/ProfileScreen';
-import CommentScreen from './Screens/main/CommentScreen';
+import CommentScreen from './Screens/nestedScreens/CommentScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
