@@ -1,10 +1,7 @@
-import { StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { useRoute } from './router';
 import { Provider } from 'react-redux';
 import { store } from './redux/dashboard/store';
-import db from './firebase/config';
+import Main from './components/Main';
 
 // const loadFonts = async () => {
 //   await Font.loadAsync({
@@ -14,10 +11,7 @@ import db from './firebase/config';
 // };
 
 export default function App() {
-  const [user, setUser] = useState(null);
-  db.auth().onAuthStateChanged((user) => setUser(user))
 
-  const routing = useRoute(false);
   // const [isReady, setIsReady] = useState(false);
 
   // if (!isReady) {
@@ -34,18 +28,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer style={styles.container}>
-        {routing}
-      </NavigationContainer>
+      <Main />
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
