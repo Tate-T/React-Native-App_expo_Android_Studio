@@ -53,7 +53,7 @@ export default function LoginScreen({ navigation }) {
     };
 
     return (
-        <TouchableWithoutFeedback onPress={handleSubmit}>
+        <TouchableWithoutFeedback >
             <View style={styles.container}>
                 <ImageBackground
                     style={styles.image}
@@ -99,7 +99,7 @@ export default function LoginScreen({ navigation }) {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 style={styles.btn}
-                            // onPress={keyboardHide}
+                                onPress={handleSubmit}
                             >
                                 <Text style={styles.btnTitle}>Sign in</Text>
                             </TouchableOpacity>

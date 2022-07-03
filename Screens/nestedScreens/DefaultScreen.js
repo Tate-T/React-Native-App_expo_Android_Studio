@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import PostList from "../../components/PostsList";
 import db from '../../firebase/config';
+import { authSignOutUser } from "../../redux/auth/authOperations";
+import { useDispatch } from "react-redux";
 
 export default function DefaultScreen({ route, navigation }) {
     const [dimensions, setdimensions] = useState(
@@ -21,6 +23,13 @@ export default function DefaultScreen({ route, navigation }) {
             .collection('posts')
             .onSnapshot((data) => setPosts(data.docs.map(doc => ({ ...doc.data(), id: doc.id }))))
     };
+
+
+    const dispatch = useDispatch();
+
+    const signOut = () => {
+        dispatch(authSignOutUser())
+    }
 
     // useEffect(() => {
     //     if (route.params) { setPosts(prevState => [...prevState, route.params]) }
@@ -43,7 +52,7 @@ export default function DefaultScreen({ route, navigation }) {
             <View style={styles.postHeader}>
                 <Text style={styles.postTitle}>Publications</Text>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Login')}
+                    onPress={() => signOut()}
                 >
                     <Image source={require('../../assets/logOutBtn.png')} style={styles.logOutBtn} />
                 </TouchableOpacity>

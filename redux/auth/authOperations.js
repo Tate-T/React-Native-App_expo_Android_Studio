@@ -1,4 +1,10 @@
 import { auth } from '../../firebase/config';
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "firebase/auth";
 import { authSlice } from './authReducer';
 
 const authSignUpUser = ({ email, password, login }) => async (dispatch, getState) => {

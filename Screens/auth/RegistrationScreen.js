@@ -55,7 +55,7 @@ export default function RegistrationScreen({ navigation }) {
     };
 
     return (
-        <TouchableWithoutFeedback onPress={handleSubmit}>
+        <TouchableWithoutFeedback >
             <View style={styles.container}>
                 <ImageBackground
                     style={styles.image}
@@ -126,7 +126,7 @@ export default function RegistrationScreen({ navigation }) {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 style={styles.btn}
-                            // onPress={handleSubmit}
+                                onPress={handleSubmit}
                             >
                                 <Text style={styles.btnTitle}>Sign up</Text>
                             </TouchableOpacity>
