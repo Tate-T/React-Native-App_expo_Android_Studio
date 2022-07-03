@@ -1,36 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import {
     StyleSheet,
     View,
     Text,
     Image,
     ImageBackground,
-    Dimensions,
     TouchableOpacity,
     FlatList
 } from "react-native";
-import PostList from "../../components/PostsList";
+// import PostList from "../../components/PostsList";
 import { authSignOutUser } from "../../redux/auth/authOperations";
 import db from '../../firebase/config';
 
-export default function ProfileScreen({ posts, navigation }) {
-    const [dimensions, setdimensions] = useState(
-        Dimensions.get("window").width - 16 * 2
-    );
+export default function ProfileScreen() {
+    const [userPosts, setUserPosts] = useState([]);
+    const dispatch = useDispatch();
+    const { userId } = useSelector(state => state.auth)
+
+    const getUsersPosts = async () => {
+        await db.firestore()
+            .collection('posts')
+            .where('userId', '==', userId)
+            .onSnapshot((data) =>
+                setUserPosts(data.docs.map(doc => ({ ...doc.data() }))))
+    };
 
     useEffect(() => {
-        const onChange = () => {
-            const width = Dimensions.get("window").width - 16 * 2;
-            setdimensions(width);
-        };
-        Dimensions.addEventListener("change", onChange);
-        return () => {
-            Dimensions.removeEventListener("change", onChange);
-        };
+        getUsersPosts();
     }, []);
-
-    const dispatch = useDispatch();
 
     const signOut = () => {
         dispatch(authSignOutUser())
@@ -60,14 +58,24 @@ export default function ProfileScreen({ posts, navigation }) {
                             <Text style={styles.avatarBtn}>&#9587;</Text>
                         </TouchableOpacity>
                         <Text style={styles.headerTitle}>Natali Romanova</Text>
+                        <FlatList
+                            data={userPosts}
+                            keyExtractor={(item) => item.id}
+                            renderItem={({ item }) =>
+                            (<View >
+                                <Image
+                                    // source={require("../../assets/avatar.png")}
+                                    source={{ uri: item.photo }}
+                                    style={styles.postImage} />
+                                <Text style={styles.commentText}>{item.comment}</Text>
+                            </View>)}
+                            style={styles.list} />
                         {/* <TouchableOpacity
                             onPress={() => navigation.navigate('Comment')}
                         > */}
-                        <PostList posts={posts} onPressComment={() => navigation.navigate('Comment')} onPressMap={() => navigation.navigate('Map')} />
+                        {/* <PostList posts={posts} onPressComment={() => navigation.navigate('Comment')} onPressMap={() => navigation.navigate('Map')} /> */}
                         {/* </TouchableOpacity> */}
                     </View>
-
-
                 </View>
             </ImageBackground>
         </View>
@@ -131,5 +139,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         letterSpacing: 0.01,
         color: '#212121',
+    },
+    postImage: {
+        height: 240,
+        width: '100%',
+        borderRadius: 8,
     },
 });
