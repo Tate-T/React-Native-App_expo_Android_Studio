@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { useRoute } from './router';
 import { Provider } from 'react-redux';
 import { store } from './redux/dashboard/store';
+import db from './firebase/config';
 
 // const loadFonts = async () => {
 //   await Font.loadAsync({
@@ -14,6 +14,9 @@ import { store } from './redux/dashboard/store';
 // };
 
 export default function App() {
+  const [user, setUser] = useState(null);
+  db.auth().onAuthStateChanged((user) => setUser(user))
+
   const routing = useRoute(false);
   // const [isReady, setIsReady] = useState(false);
 

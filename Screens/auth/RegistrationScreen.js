@@ -42,9 +42,9 @@ export default function RegistrationScreen({ navigation }) {
             setdimensions(width);
         };
         Dimensions.addEventListener("change", onChange);
-        return () => {
-            Dimensions.removeEventListener("change", onChange);
-        };
+        // return () => {
+        //     Dimensions.removeEventListener("change", onChange);
+        // };
     }, []);
 
     const handleSubmit = () => {
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
         height: 50,
         paddingLeft: 16,
         borderRadius: 8,
-        fontFamily: 'RobotoRegular',
+        fontFamily: 'Roboto',
         fontSize: 16,
     },
     btn: {

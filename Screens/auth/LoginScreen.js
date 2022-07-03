@@ -13,6 +13,9 @@ import {
     TouchableWithoutFeedback,
     Dimensions,
 } from "react-native";
+import { useDispatch } from "react-redux";
+
+import { authSignInUser } from "../../redux/auth/authOperations";
 
 const initialState = {
     email: "",
@@ -27,6 +30,9 @@ export default function LoginScreen({ navigation }) {
         Dimensions.get("window").width - 16 * 2
     );
 
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const onChange = () => {
             const width = Dimensions.get("window").width - 16 * 2;
@@ -38,15 +44,16 @@ export default function LoginScreen({ navigation }) {
         // };
     }, []);
 
-    const keyboardHide = () => {
+    const handleSubmit = () => {
         setIsShowKeyboard(false);
         Keyboard.dismiss();
-        console.log(state);
+
+        dispatch(authSignInUser(state));
         setstate(initialState);
     };
 
     return (
-        <TouchableWithoutFeedback onPress={keyboardHide}>
+        <TouchableWithoutFeedback onPress={handleSubmit}>
             <View style={styles.container}>
                 <ImageBackground
                     style={styles.image}
