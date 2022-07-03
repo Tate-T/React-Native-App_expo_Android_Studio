@@ -58,7 +58,7 @@ export default function DefaultScreen({ route, navigation }) {
                     <Text style={styles.textProfileEmail}>email@example.com</Text>
                 </View>
             </View>
-            <PostList posts={posts} onPressComment={() => navigation.navigate('Comment')} onPressMap={() => navigation.navigate('Map', { location: item.location })} />
+            <PostList posts={posts} onPressComment={() => navigation.navigate('Comment', { postId: item.id })} onPressMap={() => navigation.navigate('Map', { location: item.location })} />
         </View>
     );
 }

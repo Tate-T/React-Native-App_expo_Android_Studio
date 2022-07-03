@@ -9,20 +9,38 @@ import {
     TouchableOpacity,
     FlatList
 } from "react-native";
+import { useSelector } from 'react-redux';
+import db from '../../firebase/config';
 
-export default function CommentScreen({ navigation }) {
+export default function CommentScreen({ navigation, route }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
     const [comment, setComment] = useState('');
     const [comments, setComments] = useState([]);
+    const { postId } = route.params;
+    const { login } = useSelector((state) => state.auth);
 
-    const sendComment = () => {
-        setComments(comment.value)
-        setComment('')
+    const sendComment = async () => {
+        db.firestore()
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .add({ comment, login });
+        // setComments(comment.value)
+        // setComment('')
+    }
+
+    const getAllPosts = async () => {
+        db.firestore()
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .onSnapshot((data) => setComments(data.docs.map(doc => ({ ...doc.data(), id: doc.id }))))
     }
 
     useEffect(() => {
+        getAllPosts();
         const onChange = () => {
             const width = Dimensions.get("window").width - 16 * 2;
             setdimensions(width);
@@ -45,17 +63,17 @@ export default function CommentScreen({ navigation }) {
             </View>
             <View style={styles.commentsContainer}>
                 <Image
-                    source={require("../../assets/avatar.png")}
-                    // source={{ uri: item.photo }}
+                    // source={require("../../assets/avatar.png")}
+                    source={postId}
                     style={styles.postImage} />
-                {/* <FlatList
-                    data={comment}
-                    keyExtractor={(item, indx) => indx.toString()}
-                    renderItem={(item) =>
+                <FlatList
+                    data={comments}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) =>
                     (<View >
-                        <Text style={styles.commentText}>{comments}</Text>
+                        <Text style={styles.commentText}>{item.comment}</Text>
                     </View>)}
-                    style={styles.list} /> */}
+                    style={styles.list} />
 
                 <View style={styles.inputSend}>
                     <TextInput
@@ -135,6 +153,7 @@ const styles = StyleSheet.create({
     },
     inputSend: {
         flexDirection: 'row',
+        justifyContent: 'flex-end',
         backgroundColor: '#F6F6F6',
         paddingBottom: 8,
         paddingTop: 8,
