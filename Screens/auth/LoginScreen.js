@@ -99,7 +99,7 @@ export default function LoginScreen({ navigation }) {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 style={styles.btn}
-                                onPress={keyboardHide}
+                            // onPress={keyboardHide}
                             >
                                 <Text style={styles.btnTitle}>Sign in</Text>
                             </TouchableOpacity>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         height: 50,
         paddingLeft: 16,
         borderRadius: 8,
-        fontFamily: 'RobotoRegular',
+        fontFamily: 'Roboto',
         fontSize: 16,
     },
     btn: {
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
         marginBottom: 33,
     },
     headerTitle: {
-        fontFamily: 'RobotoMedium',
+        fontFamily: 'Roboto',
         fontSize: 30,
         lineHeight: 35.16,
         textAlign: 'center',
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     navigationBtn: {
-        fontFamily: 'RobotoRegular',
+        fontFamily: 'Roboto',
         fontSize: 16,
         color: '#1B4371'
     }

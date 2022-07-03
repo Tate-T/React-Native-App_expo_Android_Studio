@@ -10,6 +10,7 @@ const firebaseConfig = {
     appId: "1:164215625913:android:e453e0f49e8488d0212368",
 };
 
+export default firebase.initializeApp(firebaseConfig)
 // const firebaseConfig = {
 //     "type": "service_account",
 //     "project_id": "react-native-app-b4fbc",
@@ -22,5 +23,3 @@ const firebaseConfig = {
 //     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
 //     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ksmgg%40react-native-app-b4fbc.iam.gserviceaccount.com"
 // }
-
-export default firebase.initializeApp(firebaseConfig)

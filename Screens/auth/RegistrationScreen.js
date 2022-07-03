@@ -126,7 +126,7 @@ export default function RegistrationScreen({ navigation }) {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 style={styles.btn}
-                                onPress={handleSubmit}
+                            // onPress={handleSubmit}
                             >
                                 <Text style={styles.btnTitle}>Sign up</Text>
                             </TouchableOpacity>
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
         marginBottom: 33,
     },
     headerTitle: {
-        fontFamily: 'RobotoMedium',
+        fontFamily: 'Roboto',
         fontSize: 30,
         lineHeight: 35.16,
         textAlign: 'center',
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     navigationBtn: {
-        fontFamily: 'RobotoRegular',
+        fontFamily: 'Roboto',
         fontSize: 16,
         color: '#1B4371'
     }
