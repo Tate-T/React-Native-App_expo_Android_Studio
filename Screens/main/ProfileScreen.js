@@ -10,6 +10,7 @@ import {
     FlatList
 } from "react-native";
 import PostList from "../../components/PostsList";
+import db from '../../firebase/config';
 
 export default function ProfileScreen({ posts, navigation }) {
     const [dimensions, setdimensions] = useState(
@@ -36,7 +37,7 @@ export default function ProfileScreen({ posts, navigation }) {
                 <View style={styles.postsContainer}>
 
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('Login')}
+                        onPress={() => db.auth().signOut()}
                     >
                         <Image source={require('../../assets/logOutBtn.png')} style={styles.logOutBtn} />
                     </TouchableOpacity>
