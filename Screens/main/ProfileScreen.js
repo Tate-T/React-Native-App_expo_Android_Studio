@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
 import {
     StyleSheet,
     View,
@@ -10,6 +11,7 @@ import {
     FlatList
 } from "react-native";
 import PostList from "../../components/PostsList";
+import { authSignOutUser } from "../../redux/auth/authOperations";
 import db from '../../firebase/config';
 
 export default function ProfileScreen({ posts, navigation }) {
@@ -28,6 +30,12 @@ export default function ProfileScreen({ posts, navigation }) {
         };
     }, []);
 
+    const dispatch = useDispatch();
+
+    const signOut = () => {
+        dispatch(authSignOutUser())
+    }
+
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -37,7 +45,7 @@ export default function ProfileScreen({ posts, navigation }) {
                 <View style={styles.postsContainer}>
 
                     <TouchableOpacity
-                        onPress={() => db.auth().signOut()}
+                        onPress={() => signOut()}
                     >
                         <Image source={require('../../assets/logOutBtn.png')} style={styles.logOutBtn} />
                     </TouchableOpacity>

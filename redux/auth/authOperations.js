@@ -36,6 +36,8 @@ const authSignInUser = ({ email, password }) => async (dispatch, getState) => {
 
 const authSignOutUser = () => async (dispatch, getState) => {
     await db.auth().signOut();
+
+    dispatch(authSlice.actions.authSignOut())
 };
 
 const authStateChange = () => async (dispatch, getState) => {
