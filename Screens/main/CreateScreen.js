@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import {
     StyleSheet,
     View,
@@ -14,7 +15,9 @@ import * as Location from 'expo-location';
 
 const initialState = {
     name: "",
-    location: "",
+    // location: "",
+    location: null,
+
 };
 
 export default function CreateScreen({ navigation }) {
@@ -27,9 +30,10 @@ export default function CreateScreen({ navigation }) {
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [state, setstate] = useState(initialState);
 
+    const { userId, login } = useSelector((state) => state.auth);
+
     const takePhoto = async () => {
         const photo = await camera.takePictureAsunc();
-        const location = await Location.getCurrentPositionAsync()
         setPhoto(photo.uri);
     };
 
@@ -45,13 +49,25 @@ export default function CreateScreen({ navigation }) {
             .ref('postsImages')
             .child(uniquePostId)
             .getDownLoadURL();
+        return processedPhoto;
     }
 
     const sendPhoto = async () => {
-        uploadPhotoToServer();
-        navigation.navigate("Default", { photo });
-        setstate('')
+        uploadPostToServer();
+        navigation.navigate("Default");
+        // setstate('')
     };
+
+    const uploadPostToServer = async () => {
+
+        const photo = await uploadPhotoToServer();
+
+        const createPost = await db
+            .firestore()
+            .collection('posts')
+            .add({ userId, login, photo, name: state.name, location: state.location.coords })
+
+    }
 
     const deleteBtn = () => {
         setPhoto(null)
@@ -69,9 +85,11 @@ export default function CreateScreen({ navigation }) {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
+                console.log('Permission to access location was denied');
                 return;
             }
+            const location = await Location.getCurrentPositionAsync()
+            setstate(location)
         })();
 
         const onChange = () => {

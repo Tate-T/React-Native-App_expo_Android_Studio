@@ -4,7 +4,9 @@ import 'firebase/storage';
 import 'firebase/database';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDbD4_csgU6mtpBBNfNM-NUD5fBEcClEoA",
+    // apiKey: "AIzaSyDbD4_csgU6mtpBBNfNM-NUD5fBEcClEoA",
+    apiKey: "515f5ea6b3dbde0391883778e94d3bb585d6e782",
+
     authDomain: "react-native-app-b4fbc.firebaseapp.com",
     projectId: "react-native-app-b4fbc",
     storageBucket: "react-native-app-b4fbc.appspot.com",

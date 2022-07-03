@@ -8,6 +8,7 @@ import {
     TouchableOpacity
 } from "react-native";
 import PostList from "../../components/PostsList";
+import db from '../../firebase/config';
 
 export default function DefaultScreen({ route, navigation }) {
     const [dimensions, setdimensions] = useState(
@@ -15,11 +16,18 @@ export default function DefaultScreen({ route, navigation }) {
     );
     const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-        if (route.params) { setPosts(prevState => [...prevState, route.params]) }
-    }, [route.params])
+    const getAllPost = async () => {
+        await db.firestore()
+            .collection('posts')
+            .onSnapshot((data) => setPosts(data.docs.map(doc => ({ ...doc.data(), id: doc.id }))))
+    };
+
+    // useEffect(() => {
+    //     if (route.params) { setPosts(prevState => [...prevState, route.params]) }
+    // }, [route.params])
 
     useEffect(() => {
+        getAllPost();
         const onChange = () => {
             const width = Dimensions.get("window").width - 16 * 2;
             setdimensions(width);
@@ -50,7 +58,7 @@ export default function DefaultScreen({ route, navigation }) {
                     <Text style={styles.textProfileEmail}>email@example.com</Text>
                 </View>
             </View>
-            <PostList posts={posts} onPressComment={() => navigation.navigate('Comment')} onPressMap={() => navigation.navigate('Map')} />
+            <PostList posts={posts} onPressComment={() => navigation.navigate('Comment')} onPressMap={() => navigation.navigate('Map', { location: item.location })} />
         </View>
     );
 }

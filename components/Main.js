@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRoute } from '../router';
 import { NavigationContainer } from '@react-navigation/native';
-import { authStateChange } from '../../redux/auth/authOperations';
+import { authStateChange } from '../redux/auth/authOperations';
 
 const Main = () => {
     const { stateChange } = useSelector(state => state.auth);

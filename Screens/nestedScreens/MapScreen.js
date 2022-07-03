@@ -8,10 +8,12 @@ import {
 } from "react-native";
 import MapView, { Marker } from 'react-native-maps';
 
-export default function MapScreen({ navigation }) {
+export default function MapScreen({ navigation, route }) {
     const [dimensions, setdimensions] = useState(
         Dimensions.get("window").width - 16 * 2
     );
+
+    const { longitude, latitude } = route.params.locatiion;
 
     useEffect(() => {
         const onChange = () => {
@@ -33,8 +35,8 @@ export default function MapScreen({ navigation }) {
             </TouchableOpacity>
             <MapView
                 style={styles.mapContainer}
-                initialRegion={{ longitude: '', latitude: '', latitudeDelta: '', longitudeDelta: '' }}>
-                {/* <Marker title="location" coordinate={{ longitude: '', latitude: '' }} /> */}
+                initialRegion={{ longitude, latitude, latitudeDelta: 0.001, longitudeDelta: 0.006 }}>
+                <Marker title="location" coordinate={{ longitude, latitude }} />
             </MapView>
         </View>
     );
