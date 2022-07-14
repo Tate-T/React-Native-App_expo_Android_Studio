@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "rn-project",
-    "slug": "rn-project",
+    "name": "Blog ReactNative App",
+    "slug": "blog-react-native-app",
+    "privacy": "public",
+    "description": "An app to post photosy",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
