@@ -10,7 +10,7 @@ import {
     TouchableOpacity
 } from "react-native";
 import { Camera } from 'expo-camera';
-import db from '../../firebase/config';
+import storage from '../../firebase/config';
 import * as Location from 'expo-location';
 
 const initialState = {
@@ -37,15 +37,14 @@ export default function CreateScreen({ navigation }) {
         setPhoto(photo.uri);
     };
 
-    const uploadPhotoToServer = async (photo) => {
+    const uploadPhotoToServer = async (storage, photo) => {
         const response = await fetch(photo)
         const file = await response.blob();
 
         const uniquePostId = Date.now().toString();
-        await db.storage().ref(`postsImages/${uniquePostId}`).put(file);
+        await storage().ref(`postsImages/${uniquePostId}`).put(file);
 
-        const processedPhoto = await db
-            .storage()
+        const processedPhoto = await storage()
             .ref('postsImages')
             .child(uniquePostId)
             .getDownLoadURL();
@@ -55,15 +54,14 @@ export default function CreateScreen({ navigation }) {
     const sendPhoto = async () => {
         uploadPostToServer();
         navigation.navigate("Default");
-        // setstate('')
+        setstate('')
     };
 
     const uploadPostToServer = async () => {
 
         const photo = await uploadPhotoToServer();
 
-        const createPost = await db
-            .firestore()
+        const createPost = await firestore()
             .collection('posts')
             .add({ userId, login, photo, name: state.name, location: state.location.coords })
 
